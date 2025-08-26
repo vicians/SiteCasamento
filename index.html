@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Convite de Casamento - Samuel & Gabriela</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Fonte cursiva para os nomes -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Georgia', serif;
+      background: #fffaf7;
+      color: #444;
+    }
+
+    .convite {
+      max-width: 600px;
+      margin: 60px auto;
+      background: #ffffff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border-radius: 16px;
+      padding: 40px 30px;
+      text-align: center;
+      border: 2px solid #d8b4e2;
+    }
+
+    .convite h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.8em;
+      color: #7b3e8a;
+      margin-bottom: 0.2em;
+      letter-spacing: 6px;
+    }
+
+    .convite p {
+      font-size: 1.1em;
+      margin: 10px 0;
+    }
+
+    .linha {
+      width: 60px;
+      height: 2px;
+      background-color: #d8b4e2;
+      margin: 20px auto;
+    }
+
+    .detalhes {
+      margin-top: 30px;
+      font-size: 1.1em;
+    }
+
+    .detalhes strong {
+      display: block;
+      margin-top: 10px;
+      font-size: 1.2em;
+    }
+
+    section h2 {
+      font-size: 1.4em;
+      color: #7b3e8a;
+      margin-top: 40px;
+    }
+
+    section ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    section ul li {
+      margin: 10px 0;
+      font-size: 1.05em;
+    }
+
+    form {
+      margin-top: 20px;
+      text-align: left;
+    }
+
+    form label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    form input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1em;
+    }
+
+    form button {
+      margin-top: 20px;
+      background-color: #7b3e8a;
+      color: white;
+      padding: 12px 30px;
+      border-radius: 8px;
+      border: none;
+      font-size: 1.1em;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    form button:hover {
+      background-color: #5e2c69;
+      transform: scale(1.05);
+    }
+
+    .contador {
+      font-size: 1.2em;
+      margin-top: 20px;
+      color: #7b3e8a;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.9em;
+      color: #888;
+      margin-top: 60px;
+    }
+
+    @media (max-width: 500px) {
+      .convite {
+        margin: 30px 10px;
+        padding: 30px 20px;
+      }
+
+      .convite h1 {
+        font-size: 2.2em;
+      }
+
+      form button {
+        padding: 10px 20px;
+        font-size: 1em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="convite">
+    <h1>Samuel & Gabriela</h1>
+    <p>Com alegria em nossos corações, convidamos você para celebrar conosco o dia mais especial de nossas vidas.</p>
+
+    <div class="linha"></div>
+
+    <div class="detalhes">
+      <strong>💒 Cerimônia:</strong>
+      <br>
+      20 de Novembro de 2026, às 18h  
+      <br><br>
+      Igreja Ass. Deus Ministério De Taubaté, São João Nepomuceno – MG
+    </div>
+
+    <section>
+      <h2>Cronograma do Grande Dia</h2>
+      <ul>
+        <li>17:00 - Chegada dos convidados</li>
+        <li>18:00 - Cerimônia</li>
+        <li>19:00 - Recepção e jantar</li>
+      </ul>
+    </section>
+
+    <div class="detalhes">
+      <strong>🎉 Festa:</strong>
+      <br>
+      Após a cerimônia, no mesmo local.
+    </div>
+
+    <section>
+      <h2>Contato</h2>
+      <p>Se tiver dúvidas, entre em contato com a gente:</p>
+      <p>WhatsApp: (32) 99825-0270 ou (32) 99829-1412</p>
+    </section>
+
+    <!-- Contagem regressiva -->
+    <div class="contador" id="contador">
+      Faltam <span id="diasRestantes">calculando...</span> dias para o grande dia!
+    </div>
+
+    <!-- Formulário integrado -->
+    <section>
+      <h2>Confirme sua Presença</h2>
+      <form id="formRSVP">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required>
+
+        <label for="quantidade">Quantas pessoas irão com você?</label>
+        <input type="number" id="quantidade" name="quantidade" min="1" required>
+
+        <button type="submit">Confirmar Presença</button>
+      </form>
+
+      <div id="agradecimento" style="display:none; text-align:center; margin-top:20px;">
+        <h2>Obrigado por confirmar sua presença!</h2>
+        <p>Estamos ansiosos para celebrar com você.</p>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    Com amor, Samuel & Gabriela – 2026 ©
+  </footer>
+
+  <script>
+    // Contagem regressiva
+    function calcularContagemRegressiva() {
+      const dataEvento = new Date("Nov 20, 2026 18:00:00").getTime();
+      const agora = new Date().getTime();
+      const distancia = dataEvento - agora;
+
+      const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
+      document.getElementById("diasRestantes").innerText = dias;
+
+      if (dias <= 0) {
+        document.getElementById("contador").innerText = "O grande dia chegou!";
+      }
+    }
+
+    setInterval(calcularContagemRegressiva, 1000);
+
+    // Formulário integrado com envio ao Google Sheet
+    document.getElementById("formRSVP").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const nome = document.getElementById("nome").value;
+      const quantidade = document.getElementById("quantidade").value;
+
+      fetch("https://script.google.com/macros/s/AKfycbyFngrVGxc4fVswFZRbzqVkmCmObHREDHkzdnkm_in982LM8bkJa9aUbJ4o4rDfvOfdbA/exec", {
+        method: "POST",
+        body: new URLSearchParams({nome, quantidade})
+      })
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("formRSVP").style.display = "none";
+        document.getElementById("agradecimento").style.display = "block";
+      })
+      .catch(error => alert("Erro ao enviar, tente novamente."));
+    });
+  </script>
+
+</body>
+</html>
