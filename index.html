@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <title>Convite de Casamento - Samuel & Gabriela</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- Fonte cursiva para os nomes -->
+
+  <!-- Fonte cursiva -->
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-  
+
   <style>
     body {
       margin: 0;
@@ -74,18 +74,36 @@
       font-size: 1.05em;
     }
 
-    form {
+    /* Contador */
+    .contador {
+      font-size: 1.2em;
       margin-top: 20px;
+      color: #7b3e8a;
+    }
+
+    /* RSVP centralizado */
+    #rsvp {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 300px;
+      margin-top: 30px;
+    }
+
+    #formRSVP {
+      width: 100%;
+      max-width: 400px;
       text-align: left;
     }
 
-    form label {
+    #formRSVP label {
       display: block;
       margin-top: 10px;
       font-weight: bold;
     }
 
-    form input {
+    #formRSVP input {
       width: 100%;
       padding: 8px;
       margin-top: 5px;
@@ -94,8 +112,9 @@
       font-size: 1em;
     }
 
-    form button {
-      margin-top: 20px;
+    #formRSVP button {
+      display: block;
+      margin: 20px auto 0 auto;
       background-color: #7b3e8a;
       color: white;
       padding: 12px 30px;
@@ -104,18 +123,11 @@
       font-size: 1.1em;
       cursor: pointer;
       transition: background 0.3s, transform 0.3s;
-      text-align: center;
     }
 
-    form button:hover {
+    #formRSVP button:hover {
       background-color: #5e2c69;
       transform: scale(1.05);
-    }
-
-    .contador {
-      font-size: 1.2em;
-      margin-top: 20px;
-      color: #7b3e8a;
     }
 
     /* Spinner */
@@ -126,7 +138,7 @@
       width: 40px;
       height: 40px;
       animation: spin 1s linear infinite;
-      margin: 0 auto;
+      margin: 10px auto;
     }
 
     @keyframes spin {
@@ -151,7 +163,7 @@
         font-size: 2.2em;
       }
 
-      form button {
+      #formRSVP button {
         padding: 10px 20px;
         font-size: 1em;
       }
@@ -200,24 +212,25 @@
       Faltam <span id="diasRestantes">calculando...</span> dias para o grande dia!
     </div>
 
-    <!-- Formulário integrado -->
-    <section>
+    <!-- RSVP centralizado -->
+    <section id="rsvp">
       <h2>Confirme sua Presença</h2>
       <form id="formRSVP">
         <label for="nome">Nome:</label>
         <input type="text" id="nome" name="nome" required>
 
-        <label for="quantidade">Contando com você, quantas pessoas irão comparecer?</label>
+        <label for="quantidade">Contando com você, quantas pessoas vão comparecer?</label>
         <input type="number" id="quantidade" name="quantidade" min="1" required>
 
         <button type="submit">Confirmar Presença</button>
       </form>
 
       <!-- Spinner -->
-      <div id="spinner" style="display:none; margin-top:10px;">
+      <div id="spinner" style="display:none;">
         <div class="loader"></div>
       </div>
 
+      <!-- Mensagem de agradecimento -->
       <div id="agradecimento" style="display:none; text-align:center; margin-top:20px;">
         <h2>Obrigado por confirmar sua presença!</h2>
         <p>Estamos ansiosos para celebrar com você.</p>
@@ -244,16 +257,14 @@
         document.getElementById("contador").innerText = "O grande dia chegou!";
       }
     }
-
     setInterval(calcularContagemRegressiva, 1000);
 
-    // Formulário integrado com envio ao Google Sheet
+    // Formulário RSVP
     document.getElementById("formRSVP").addEventListener("submit", function(e) {
       e.preventDefault();
 
       const nome = document.getElementById("nome").value;
       const quantidade = document.getElementById("quantidade").value;
-
       const botao = document.querySelector("#formRSVP button");
 
       // Desabilitar botão e mostrar spinner
@@ -282,5 +293,3 @@
 
 </body>
 </html>
-
-
