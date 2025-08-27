@@ -117,6 +117,22 @@
       color: #7b3e8a;
     }
 
+    /* Spinner */
+    .loader {
+      border: 6px solid #f3f3f3;
+      border-top: 6px solid #7b3e8a;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
     footer {
       text-align: center;
       font-size: 0.9em;
@@ -196,6 +212,11 @@
         <button type="submit">Confirmar Presença</button>
       </form>
 
+      <!-- Spinner -->
+      <div id="spinner" style="display:none; margin-top:10px;">
+        <div class="loader"></div>
+      </div>
+
       <div id="agradecimento" style="display:none; text-align:center; margin-top:20px;">
         <h2>Obrigado por confirmar sua presença!</h2>
         <p>Estamos ansiosos para celebrar com você.</p>
@@ -211,7 +232,7 @@
   <script>
     // Contagem regressiva
     function calcularContagemRegressiva() {
-      const dataEvento = new Date("Nov 20, 2026 08:00:00").getTime();
+      const dataEvento = new Date("Nov 20, 2026 18:00:00").getTime();
       const agora = new Date().getTime();
       const distancia = dataEvento - agora;
 
@@ -232,20 +253,25 @@
       const nome = document.getElementById("nome").value;
       const quantidade = document.getElementById("quantidade").value;
 
+      // Mostrar spinner
+      document.getElementById("spinner").style.display = "block";
+
       fetch("https://script.google.com/macros/s/AKfycbyFngrVGxc4fVswFZRbzqVkmCmObHREDHkzdnkm_in982LM8bkJa9aUbJ4o4rDfvOfdbA/exec", {
         method: "POST",
         body: new URLSearchParams({nome, quantidade})
       })
       .then(response => response.text())
       .then(data => {
+        document.getElementById("spinner").style.display = "none"; // Esconde spinner
         document.getElementById("formRSVP").style.display = "none";
         document.getElementById("agradecimento").style.display = "block";
       })
-      .catch(error => alert("Erro ao enviar, tente novamente."));
+      .catch(error => {
+        document.getElementById("spinner").style.display = "none"; // Esconde spinner
+        alert("Erro ao enviar, tente novamente.");
+      });
     });
   </script>
 
 </body>
 </html>
-
-
