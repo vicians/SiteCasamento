@@ -232,7 +232,7 @@
   <script>
     // Contagem regressiva
     function calcularContagemRegressiva() {
-      const dataEvento = new Date("Nov 20, 2026 08:00:00").getTime();
+      const dataEvento = new Date("Nov 20, 2026 18:00:00").getTime();
       const agora = new Date().getTime();
       const distancia = dataEvento - agora;
 
@@ -253,7 +253,11 @@
       const nome = document.getElementById("nome").value;
       const quantidade = document.getElementById("quantidade").value;
 
-      // Mostrar spinner
+      const botao = document.querySelector("#formRSVP button");
+
+      // Desabilitar botão e mostrar spinner
+      botao.disabled = true;
+      botao.style.opacity = 0.6;
       document.getElementById("spinner").style.display = "block";
 
       fetch("https://script.google.com/macros/s/AKfycbyFngrVGxc4fVswFZRbzqVkmCmObHREDHkzdnkm_in982LM8bkJa9aUbJ4o4rDfvOfdbA/exec", {
@@ -262,12 +266,14 @@
       })
       .then(response => response.text())
       .then(data => {
-        document.getElementById("spinner").style.display = "none"; // Esconde spinner
+        document.getElementById("spinner").style.display = "none";
         document.getElementById("formRSVP").style.display = "none";
         document.getElementById("agradecimento").style.display = "block";
       })
       .catch(error => {
-        document.getElementById("spinner").style.display = "none"; // Esconde spinner
+        document.getElementById("spinner").style.display = "none";
+        botao.disabled = false;
+        botao.style.opacity = 1;
         alert("Erro ao enviar, tente novamente.");
       });
     });
@@ -275,4 +281,3 @@
 
 </body>
 </html>
-
