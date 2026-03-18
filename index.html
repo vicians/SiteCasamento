@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Sofia&display=swap" rel="stylesheet">
-
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -38,10 +38,27 @@
             
             <div class="date">
                 <span class="line"></span>
-                20 DE NOVEMBRO DE 2027
+                20 DE NOVEMBRO DE 2026
                 <span class="line"></span>
             </div>
-            
+            <div id="countdown" class="countdown-container">
+            <div class="countdown-item">
+                <span id="days">00</span>
+                <small>Dias</small>
+            </div>
+            <div class="countdown-item">
+                <span id="hours">00</span>
+                <small>Horas</small>
+            </div>
+            <div class="countdown-item">
+                <span id="minutes">00</span>
+                <small>Min</small>
+            </div>
+            <div class="countdown-item">
+                <span id="seconds">00</span>
+                <small>Seg</small>
+            </div>
+            </div>
             <a href="#rsvp" class="btn-hero">Confirmar Presença</a>
         </div>
     </section>
@@ -106,28 +123,10 @@
         <h2 class="section-title">Lista de Presentes</h2>
         <p class="gifts-intro">Sua presença é o nosso maior presente! Mas se desejar nos abençoar de outra forma, preparamos algumas opções divertidas para nos ajudar nessa nova fase.</p>
         
-        <div class="gifts-grid">
-            <div class="gift-card">
-                <div class="gift-icon">🥂</div>
-                <h3>Um Brinde de Celebração</h3>
-                <span class="gift-price">R$ 50,00</span>
-                <button class="btn-gift" onclick="abrirModalPix('Um Brinde de Celebração')">Presentear</button>
-            </div>
-
-            <div class="gift-card">
-                <div class="gift-icon">🍽️</div>
-                <h3>Jantar Romântico</h3>
-                <span class="gift-price">R$ 150,00</span>
-                <button class="btn-gift" onclick="abrirModalPix('Jantar Romântico')">Presentear</button>
-            </div>
-
-            <div class="gift-card">
-                <div class="gift-icon">✈️</div>
-                <h3>Cota para a Lua de Mel</h3>
-                <span class="gift-price">R$ 300,00</span>
-                <button class="btn-gift" onclick="abrirModalPix('Cota para a Lua de Mel')">Presentear</button>
-            </div>
+        <div class="gifts-grid" id="lista-dinamica">
+          <p>Carregando presentes...</p>
         </div>
+        
     </section>
 
     <div id="pixModal" class="modal">
