@@ -664,3 +664,41 @@ body {
         width: 100%;
     }
 }
+
+.countdown-container {
+    display: flex;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.countdown-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.2); /* Transparência sobre a foto hero */
+    padding: 15px;
+    border-radius: 8px;
+    min-width: 80px;
+    backdrop-filter: blur(5px); /* Efeito de vidro fosco */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.countdown-item span {
+    font-size: 30px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.countdown-item small {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #fff;
+    margin-top: 5px;
+}
+
+@media (max-width: 480px) {
+    .countdown-container { gap: 10px; }
+    .countdown-item { min-width: 60px; padding: 10px; }
+    .countdown-item span { font-size: 20px; }
+}
