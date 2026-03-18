@@ -152,7 +152,7 @@ body {
 
 .second-screen {
     height: 100vh;
-    background-color: #FAF7F0;
+    background-color: #fff;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -161,7 +161,7 @@ body {
 }
 
 .timeline-section {
-    background-color: #FAF7F0;
+    background-color: #fff;
     padding: 80px 20px;
     text-align: center;
 }
@@ -366,7 +366,7 @@ body {
 }
 
 .gift-card {
-    background-color: #FAF7F0;
+    background-color: #fff;
     padding: 30px 20px;
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
@@ -517,7 +517,7 @@ body {
 
 .event-info {
     flex: 1;
-    background-color: #FAF7F0;
+    background-color: #fff;
     padding: 40px;
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
