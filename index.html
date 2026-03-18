@@ -1,295 +1,222 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Convite de Casamento - Samuel & Gabriela</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samuel & Gabriela - Casamento</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Sofia&display=swap" rel="stylesheet">
 
-  <!-- Fonte cursiva -->
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Georgia', serif;
-      background: #fffaf7;
-      color: #444;
-    }
-
-    .convite {
-      max-width: 600px;
-      margin: 60px auto;
-      background: #ffffff;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      border-radius: 16px;
-      padding: 40px 30px;
-      text-align: center;
-      border: 2px solid #d8b4e2;
-    }
-
-    .convite h1 {
-      font-family: 'Great Vibes', cursive;
-      font-size: 2.8em;
-      color: #7b3e8a;
-      margin-bottom: 0.2em;
-      letter-spacing: 6px;
-    }
-
-    .convite p {
-      font-size: 1.1em;
-      margin: 10px 0;
-    }
-
-    .linha {
-      width: 60px;
-      height: 2px;
-      background-color: #d8b4e2;
-      margin: 20px auto;
-    }
-
-    .detalhes {
-      margin-top: 30px;
-      font-size: 1.1em;
-    }
-
-    .detalhes strong {
-      display: block;
-      margin-top: 10px;
-      font-size: 1.2em;
-    }
-
-    section h2 {
-      font-size: 1.4em;
-      color: #7b3e8a;
-      margin-top: 40px;
-    }
-
-    section ul {
-      list-style-type: none;
-      padding: 0;
-    }
-
-    section ul li {
-      margin: 10px 0;
-      font-size: 1.05em;
-    }
-
-    /* Contador */
-    .contador {
-      font-size: 1.2em;
-      margin-top: 20px;
-      color: #7b3e8a;
-    }
-
-    /* RSVP centralizado */
-    #rsvp {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 300px;
-      margin-top: 30px;
-    }
-
-    #formRSVP {
-      width: 100%;
-      max-width: 400px;
-      text-align: left;
-    }
-
-    #formRSVP label {
-      display: block;
-      margin-top: 10px;
-      font-weight: bold;
-    }
-
-    #formRSVP input {
-      width: 100%;
-      padding: 8px;
-      margin-top: 5px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      font-size: 1em;
-    }
-
-    #formRSVP button {
-      display: block;
-      margin: 20px auto 0 auto;
-      background-color: #7b3e8a;
-      color: white;
-      padding: 12px 30px;
-      border-radius: 8px;
-      border: none;
-      font-size: 1.1em;
-      cursor: pointer;
-      transition: background 0.3s, transform 0.3s;
-    }
-
-    #formRSVP button:hover {
-      background-color: #5e2c69;
-      transform: scale(1.05);
-    }
-
-    /* Spinner */
-    .loader {
-      border: 6px solid #f3f3f3;
-      border-top: 6px solid #7b3e8a;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      animation: spin 1s linear infinite;
-      margin: 10px auto;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    footer {
-      text-align: center;
-      font-size: 0.9em;
-      color: #888;
-      margin-top: 60px;
-    }
-
-    @media (max-width: 500px) {
-      .convite {
-        margin: 30px 10px;
-        padding: 30px 20px;
-      }
-
-      .convite h1 {
-        font-size: 2.2em;
-      }
-
-      #formRSVP button {
-        padding: 10px 20px;
-        font-size: 1em;
-      }
-    }
-  </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <div class="convite">
-    <h1>Samuel & Gabriela</h1>
-    <p>Com alegria em nossos corações, convidamos você para celebrar conosco o dia mais especial de nossas vidas.</p>
+    <header class="navbar">
+        <div class="logo">S | G</div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#home">Início</a></li>
+                <li><a href="#historia">História</a></li>
+                <li><a href="#presentes">Presentes</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <div class="linha"></div>
-
-    <div class="detalhes">
-      <strong>💒 Cerimônia:</strong>
-      <br>
-      20 de Novembro de 2026, às 17h  
-      <br><br>
-      Igreja Ass. Deus Ministério De Taubaté, São João Nepomuceno – MG
-    </div>
-
-    <section>
-      <h2>Cronograma do Grande Dia</h2>
-      <ul>
-        <li>16:30 - Chegada dos convidados</li>
-        <li>17:00 - Cerimônia</li>
-        <li>19:00 - Recepção e jantar</li>
-      </ul>
+    <section id="home" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="subtitle">
+                <span class="line"></span>
+                VAMOS NOS CASAR
+                <span class="line"></span>
+            </div>
+            
+            <h1 class="title">Samuel <span class="heart">❤️</span> Gabriela</h1>
+            
+            <div class="date">
+                <span class="line"></span>
+                20 DE NOVEMBRO DE 2027
+                <span class="line"></span>
+            </div>
+            
+            <a href="#rsvp" class="btn-hero">Confirmar Presença</a>
+        </div>
     </section>
 
-    <div class="detalhes">
-      <strong>🎉 Recepção:</strong>
-      <br>
-      Após a cerimônia, no mesmo local.
-    </div>
+    <section id="historia" class="timeline-section">
+        <h2 class="section-title">Nossa História</h2>
+        
+        <div class="timeline">
+            <div class="timeline-line"></div>
 
-    <section>
-      <h2>Contato</h2>
-      <p>Se tiver dúvidas, entre em contato com a gente:</p>
-      <p>WhatsApp: (32) 99825-0270 ou (32) 99829-1412</p>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                
+                <div class="timeline-wrapper">
+                    <div class="timeline-content left-text">
+                        <span class="timeline-date">Abril de 2023</span>
+                        <h3>O Início do Namoro</h3>
+                        <p>Onde nossa jornada começou de verdade.</p>
+                    </div>
+
+                    <div class="timeline-photo-card right-photo">
+                        <img src="fotoroca.png" alt="Foto Samuel e Gabriela - Namoro" class="timeline-img">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline-item inverse">
+                <div class="timeline-dot"></div>
+                
+                <div class="timeline-wrapper">
+                    <div class="timeline-content right-text">
+                        <span class="timeline-date">Abril de 2025</span>
+                        <h3>O Noivado</h3>
+                        <p>O pedido inesquecível e o "sim" que mudou nossas vidas.</p>
+                    </div>
+
+                    <div class="timeline-photo-card left-photo">
+                        <img src="fotomao.jpg" alt="Foto Samuel e Gabriela - Noivado" class="timeline-img">
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                
+                <div class="timeline-wrapper">
+                    <div class="timeline-content left-text">
+                        <span class="timeline-date">Novembro de 2027</span>
+                        <h3>O Casamento</h3>
+                        <p>O início do nosso "felizes para sempre". O melhor está por vir!</p>
+                    </div>
+
+                    <div class="timeline-photo-card right-photo">
+                        <img src="sresenhora.jpg" alt="Foto Samuel e Gabriela - Casamento" class="timeline-img future-img">
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <!-- Contagem regressiva -->
-    <div class="contador" id="contador">
-      Faltam <span id="diasRestantes">calculando...</span> dias para o grande dia!
-    </div>
+    <section id="presentes" class="gifts-section">
+        <h2 class="section-title">Lista de Presentes</h2>
+        <p class="gifts-intro">Sua presença é o nosso maior presente! Mas se desejar nos abençoar de outra forma, preparamos algumas opções divertidas para nos ajudar nessa nova fase.</p>
+        
+        <div class="gifts-grid">
+            <div class="gift-card">
+                <div class="gift-icon">🥂</div>
+                <h3>Um Brinde de Celebração</h3>
+                <span class="gift-price">R$ 50,00</span>
+                <button class="btn-gift" onclick="abrirModalPix('Um Brinde de Celebração')">Presentear</button>
+            </div>
 
-    <!-- RSVP centralizado -->
-    <section id="rsvp">
-      <h2>Confirme sua Presença</h2>
-      <form id="formRSVP">
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" required>
+            <div class="gift-card">
+                <div class="gift-icon">🍽️</div>
+                <h3>Jantar Romântico</h3>
+                <span class="gift-price">R$ 150,00</span>
+                <button class="btn-gift" onclick="abrirModalPix('Jantar Romântico')">Presentear</button>
+            </div>
 
-        <label for="quantidade">Contando com você, quantas pessoas vão comparecer?</label>
-        <input type="number" id="quantidade" name="quantidade" min="1" required>
-
-        <button type="submit">Confirmar Presença</button>
-      </form>
-
-      <!-- Spinner -->
-      <div id="spinner" style="display:none;">
-        <div class="loader"></div>
-      </div>
-
-      <!-- Mensagem de agradecimento -->
-      <div id="agradecimento" style="display:none; text-align:center; margin-top:20px;">
-        <h2>Obrigado por confirmar sua presença!</h2>
-        <p>Estamos ansiosos para celebrar com você.</p>
-      </div>
+            <div class="gift-card">
+                <div class="gift-icon">✈️</div>
+                <h3>Cota para a Lua de Mel</h3>
+                <span class="gift-price">R$ 300,00</span>
+                <button class="btn-gift" onclick="abrirModalPix('Cota para a Lua de Mel')">Presentear</button>
+            </div>
+        </div>
     </section>
 
-  </div>
+    <div id="pixModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="fecharModal()">&times;</span>
+            <h3 id="modalGiftName">Nome do Presente</h3>
+            <p>Muito obrigado pelo carinho! Escaneie o QR Code abaixo ou copie a chave PIX para nos presentear.</p>
+            
+            <div class="qr-code-placeholder">
+                <img src="qrcode-pix.png" alt="QR Code PIX">
+            </div>
+            
+            <p class="pix-key-label">Nossa Chave PIX:</p>
+            <div class="pix-copy-area">
+                <input type="text" id="pixKey" value="(32) 99825-0270" readonly>
+                <button onclick="copiarPix()" class="btn-copy">Copiar</button>
+            </div>
+        </div>
+    </div>
 
-  <footer>
-    Com amor, Samuel & Gabriela – 2026 ©
-  </footer>
+    <section id="rsvp" class="rsvp-section">
+        <h2 class="section-title">O Grande Dia</h2>
+        
+        <div class="rsvp-container">
+            <div class="event-info">
+                <h3>Detalhes do Evento</h3>
+                <p class="event-address">
+                    <strong>Igreja Assembléia de Deus Ministério de Taubaté</strong><br>
+                    Rua Expedicionário Garcia Lopes, 551<br>
+                    São João Nepomuceno - MG
+                </p>
+                
+                <div class="event-schedule">
+                    <div class="schedule-item">
+                        <span class="time">16:00</span>
+                        <span class="event-desc">Chegada dos Convidados</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="time">17:00</span>
+                        <span class="event-desc">Início da Cerimônia</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="time">18:00</span>
+                        <span class="event-desc">Recepção e Festa</span>
+                    </div>
+                </div>
 
-  <script>
-    // Contagem regressiva
-    function calcularContagemRegressiva() {
-      const dataEvento = new Date("Nov 20, 2026 08:00:00").getTime();
-      const agora = new Date().getTime();
-      const distancia = dataEvento - agora;
+                <div class="map-container">
+                    <iframe 
+                        src="https://maps.google.com/maps?q=Rua%20Expedicionario%20Garcia%20Lopes,%20551,%20S%C3%A3o%20Jo%C3%A3o%20Nepomuceno,%20MG&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+                        width="100%" height="250" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy">
+                    </iframe>
+                </div>
+            </div>
 
-      const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
-      document.getElementById("diasRestantes").innerText = dias;
+            <div class="rsvp-form-container">
+                <h3>Confirme sua Presença</h3>
+                <p class="form-intro">Por favor, confirme sua presença e de seus acompanhantes para nos ajudar na organização.</p>
+                
+                <form id="formRSVP" class="rsvp-form">
+                    <div class="form-group">
+                        <label for="nome">Nome Completo do Titular</label>
+                        <input type="text" id="nome" name="nome" placeholder="Ex: João da Silva" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="quantidade">Quantas pessoas ao todo? (Incluindo você)</label>
+                        <select id="quantidade" name="quantidade" required>
+                            <option value="" disabled selected>Selecione a quantidade</option>
+                            <option value="1">Apenas eu (1 pessoa)</option>
+                            <option value="2">2 pessoas</option>
+                            <option value="3">3 pessoas</option>
+                            <option value="4">4 pessoas</option>
+                            <option value="5">5 pessoas</option>
+                        </select>
+                    </div>
 
-      if (dias <= 0) {
-        document.getElementById("contador").innerText = "O grande dia chegou!";
-      }
-    }
-    setInterval(calcularContagemRegressiva, 1000);
+                    <button type="submit" class="btn-submit">Enviar Confirmação</button>
+                    <div id="spinner" style="display: none;" class="loading-msg">Enviando dados... aguarde.</div>
+                </form>
+                
+                <div id="agradecimento" style="display: none;" class="success-msg">
+                    <h4>🎉 Presença Confirmada!</h4>
+                    <p>Muito obrigado! Estamos muito felizes que você fará parte desse dia inesquecível.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    // Formulário RSVP
-    document.getElementById("formRSVP").addEventListener("submit", function(e) {
-      e.preventDefault();
-
-      const nome = document.getElementById("nome").value;
-      const quantidade = document.getElementById("quantidade").value;
-      const botao = document.querySelector("#formRSVP button");
-
-      // Desabilitar botão e mostrar spinner
-      botao.disabled = true;
-      botao.style.opacity = 0.6;
-      document.getElementById("spinner").style.display = "block";
-
-      fetch("https://script.google.com/macros/s/AKfycbyFngrVGxc4fVswFZRbzqVkmCmObHREDHkzdnkm_in982LM8bkJa9aUbJ4o4rDfvOfdbA/exec", {
-        method: "POST",
-        body: new URLSearchParams({nome, quantidade})
-      })
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById("spinner").style.display = "none";
-        document.getElementById("formRSVP").style.display = "none";
-        document.getElementById("agradecimento").style.display = "block";
-      })
-      .catch(error => {
-        document.getElementById("spinner").style.display = "none";
-        botao.disabled = false;
-        botao.style.opacity = 1;
-        alert("Erro ao enviar, tente novamente.");
-      });
-    });
-  </script>
-
+    <script src="script.js"></script>
 </body>
 </html>
