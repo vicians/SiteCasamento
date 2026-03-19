@@ -169,3 +169,27 @@ function revealOnScroll() {
 
 // Inicializa a lógica de revelação
 revealOnScroll();
+
+// ================= 7. LÓGICA DE ESCONDER NAVBAR =================
+
+let ultimoScroll = 0;
+
+window.addEventListener('scroll', () => {
+    const atualScroll = window.scrollY;
+    const navbar = document.querySelector('.navbar');
+
+    if (atualScroll <= 0) {
+        navbar.classList.remove('navbar-hidden');
+        return;
+    }
+
+    if (atualScroll > ultimoScroll && !navbar.classList.contains('navbar-hidden')) {
+        // Scroll para baixo: Esconde
+        navbar.classList.add('navbar-hidden');
+    } else if (atualScroll < ultimoScroll && navbar.classList.contains('navbar-hidden')) {
+        // Scroll para cima: Mostra
+        navbar.classList.remove('navbar-hidden');
+    }
+    
+    ultimoScroll = atualScroll;
+});
