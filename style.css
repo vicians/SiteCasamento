@@ -29,6 +29,13 @@ body {
     align-items: center;
     z-index: 1000;
     box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.navbar-hidden {
+    transform: translateY(-100%); 
+    opacity: 0;
+    pointer-events: none;
 }
 
 .logo {
@@ -759,7 +766,7 @@ body {
 /* ================= SEÇÃO VERSÍCULO ================= */
 .bible-section {
     background-color: #fff;
-    padding: 200px 20px; /* Bastante espaço para dar importância */
+    padding: 220px 20px; /* Bastante espaço para dar importância */
     text-align: center;
 }
 
