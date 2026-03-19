@@ -142,5 +142,30 @@ function iniciarContagemRegressiva() {
     }, 1000);
 }
 
-// Inicia o timer
 iniciarContagemRegressiva();
+
+
+// ================= 6. LÓGICA DE REVELAÇÃO AO SCROLL =================
+function revealOnScroll() {
+    const reveals = document.querySelectorAll(".reveal");
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("active");
+                // observer.unobserve(entry.target); // Descomente para animar apenas uma vez
+            } else {
+                entry.target.classList.remove("active"); // Comente para animar apenas uma vez
+            }
+        });
+    }, {
+        threshold: 0.1 // Ativa quando 10% do elemento estiver visível
+    });
+
+    reveals.forEach(reveal => {
+        observer.observe(reveal);
+    });
+}
+
+// Inicializa a lógica de revelação
+revealOnScroll();

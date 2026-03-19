@@ -14,8 +14,8 @@ body {
 }
 
 :root {
-    --pink-btn: #ff6b81; /* Verde Sálvia Pastel */
-    --pink-btn-hover: #ff4760;
+    --pink-btn: #0a0707;
+    --pink-btn-hover: #7e0717;
 }
 
 .navbar {
@@ -701,4 +701,122 @@ body {
     .countdown-container { gap: 10px; }
     .countdown-item { min-width: 60px; padding: 10px; }
     .countdown-item span { font-size: 20px; }
+}
+
+/* ================= ANIMAÇÕES DE REVELAÇÃO ================= */
+.reveal {
+    position: relative;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 1.2s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ================= RODAPÉ (FOOTER) COMPACTO ================= */
+.footer {
+    background-color: #fff;
+    padding: 20px 0; /* Reduzido de 60px para 20px */
+    text-align: center;
+    border-top: 1px solid #eee;
+    width: 100%;
+}
+
+.footer-message {
+    font-family: 'Great Vibes', cursive;
+    font-size: 22px; /* Reduzi um pouco para ficar mais delicado */
+    color: var(--pink-btn);
+    margin-bottom: 2px; /* Espaço mínimo */
+}
+
+.footer-divider {
+    width: 30px; /* Mais curta */
+    height: 1px;
+    background-color: #eee; /* Cor mais clara para sumir quase */
+    margin: 8px auto; 
+}
+
+.footer-credits {
+    font-size: 10px;
+    color: #333;
+}
+
+.footer-credits a {
+    color: #333; 
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.footer-credits a:hover {
+    color: var(--pink-btn-hover); 
+    text-decoration: underline;
+}
+
+/* ================= SEÇÃO VERSÍCULO ================= */
+.bible-section {
+    background-color: #fff;
+    padding: 200px 20px; /* Bastante espaço para dar importância */
+    text-align: center;
+}
+
+.bible-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.quote-icon {
+    font-family: 'Sofia', cursive;
+    font-size: 60px;
+    color: var(--pink-btn);
+    opacity: 0.3;
+    display: block;
+    margin-bottom: -20px;
+}
+
+.verse-text {
+    font-family: 'Sofia', cursive;
+    font-size: 32px;
+    color: #333;
+    line-height: 1.4;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.verse-reference {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #888;
+    display: block;
+}
+
+.divider-flower {
+    width: 60px;
+    height: 1px;
+    background-color: var(--pink-btn);
+    margin: 30px auto 0;
+    position: relative;
+}
+
+/* Um detalhe charmoso: um pontinho no meio da linha */
+.divider-flower::after {
+    content: '❤';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff;
+    padding: 0 10px;
+    color: var(--pink-btn);
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    .verse-text { font-size: 24px; }
+    .bible-section { padding: 60px 20px; }
 }
