@@ -1,5 +1,14 @@
+/* ================= CONFIGURAÇÕES GLOBAIS ================= */
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden; /* EVITA A TELA DANÇAR PARA OS LADOS NO MOBILE */
+}
+
+body {
+    overflow-x: hidden; /* GARANTIA DUPLA CONTRA SCROLL HORIZONTAL */
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+    color: #333;
 }
 
 * {
@@ -8,16 +17,12 @@ html {
     box-sizing: border-box;
 }
 
-body {
-    font-family: 'Montserrat', sans-serif;
-    color: #333;
-}
-
 :root {
-    --pink-btn: #0a0707;
+    --pink-btn: #0a0707; /* Preto/Rosa Escuro que você definiu */
     --pink-btn-hover: #7e0717;
 }
 
+/* ================= NAVEGAÇÃO ================= */
 .navbar {
     position: fixed;
     top: 0;
@@ -52,7 +57,7 @@ body {
 
 .nav-links a {
     text-decoration: none;
-    color: #333; /* Corrigido de #555 para #333 */
+    color: #333;
     font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -78,6 +83,7 @@ body {
     background-color: var(--pink-btn-hover);
 }
 
+/* ================= HERO SECTION ================= */
 .hero {
     position: relative;
     height: 100vh;
@@ -108,6 +114,8 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 20px;
+    padding: 0 15px; /* Margem de segurança */
+    width: 100%;
 }
 
 .subtitle, .date {
@@ -117,6 +125,7 @@ body {
     font-size: 14px;
     letter-spacing: 4px;
     text-transform: uppercase;
+    text-align: center;
 }
 
 .line {
@@ -128,14 +137,18 @@ body {
 
 .title {
     font-family: 'Great Vibes', cursive;
-    font-size: 80px;
+    /* A MÁGICA: Cresce até 80px no PC, mas diminui no mobile sem quebrar */
+    font-size: clamp(2.5rem, 8vw, 80px); 
     font-weight: 400;
     margin: 10px 0;
+    line-height: 1.2;
+    word-wrap: break-word; /* Força nomes grandes a não vazarem da tela */
 }
 
 .heart {
     color: var(--pink-btn);
-    font-size: 50px;
+    /* Coração que acompanha o tamanho do texto */
+    font-size: clamp(2rem, 6vw, 50px); 
     margin: 0 10px;
 }
 
@@ -157,16 +170,41 @@ body {
     transform: translateY(-3px);
 }
 
-.second-screen {
-    height: 100vh;
-    background-color: #fff;
+.countdown-container {
     display: flex;
-    flex-direction: column;
+    gap: 20px;
+    margin: 20px 0;
+    flex-wrap: wrap; /* Permite que os itens desçam de linha se faltar espaço */
     justify-content: center;
-    align-items: center;
-    padding: 50px;
 }
 
+.countdown-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 15px;
+    border-radius: 8px;
+    min-width: 80px;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.countdown-item span {
+    font-size: 30px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.countdown-item small {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #fff;
+    margin-top: 5px;
+}
+
+/* ================= TIMELINE / HISTÓRIA ================= */
 .timeline-section {
     background-color: #fff;
     padding: 80px 20px;
@@ -175,7 +213,7 @@ body {
 
 .section-title {
     font-family: 'Sofia', cursive;
-    font-size: 50px;
+    font-size: clamp(35px, 6vw, 50px); /* Fonte responsiva */
     color: var(--pink-btn);
     margin-bottom: 60px;
 }
@@ -264,7 +302,7 @@ body {
 
 .timeline-content p {
     font-size: 14px;
-    color: #333; /* Corrigido de #666 para #333 */
+    color: #333;
     line-height: 1.6;
 }
 
@@ -295,62 +333,13 @@ body {
     filter: grayscale(100%);
 }
 
-.left-text {
-    margin-right: 60px;
-}
+.left-text { margin-right: 60px; }
+.right-photo { margin-left: 60px; }
+.timeline-item.inverse .timeline-wrapper { flex-direction: row-reverse; }
+.right-text { margin-left: 60px; }
+.left-photo { margin-right: 60px; }
 
-.right-photo {
-    margin-left: 60px;
-}
-
-.timeline-item.inverse .timeline-wrapper {
-    flex-direction: row-reverse;
-}
-
-.right-text {
-    margin-left: 60px;
-}
-
-.left-photo {
-    margin-right: 60px;
-}
-
-@media screen and (max-width: 768px) {
-    .timeline::before,
-    .timeline-line {
-        left: 31px;
-        transform: none;
-    }
-    
-    .timeline-item {
-        margin-bottom: 50px;
-    }
-
-    .timeline-dot {
-        left: 21px;
-        transform: none;
-        top: 20px;
-    }
-
-    .timeline-wrapper {
-        flex-direction: column;
-        align-items: flex-start;
-        padding-left: 70px;
-        padding-right: 20px;
-        gap: 20px;
-    }
-
-    .timeline-item.inverse .timeline-wrapper {
-        flex-direction: column;
-    }
-
-    .timeline-content,
-    .timeline-photo-card {
-        width: 100%;
-        margin: 0 !important;
-    }
-}
-
+/* ================= PRESENTES ================= */
 .gifts-section {
     background-color: #fff;
     padding: 80px 20px;
@@ -360,12 +349,13 @@ body {
 .gifts-intro {
     max-width: 600px;
     margin: 0 auto 50px auto;
-    color: #333; /* Corrigido de #666 para #333 */
+    color: #333;
     line-height: 1.6;
 }
 
 .gifts-grid {
     display: grid;
+    /* Isso já é perfeito e 100% responsivo */
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 30px;
     max-width: 1000px;
@@ -383,27 +373,10 @@ body {
     align-items: center;
 }
 
-.gift-card:hover {
-    transform: translateY(-5px);
-}
-
-.gift-icon {
-    font-size: 50px;
-    margin-bottom: 15px;
-}
-
-.gift-card h3 {
-    font-size: 18px;
-    color: #333;
-    margin-bottom: 10px;
-}
-
-.gift-price {
-    font-size: 22px;
-    font-weight: 600;
-    color: var(--pink-btn);
-    margin-bottom: 20px;
-}
+.gift-card:hover { transform: translateY(-5px); }
+.gift-icon { font-size: 50px; margin-bottom: 15px; }
+.gift-card h3 { font-size: 18px; color: #333; margin-bottom: 10px; }
+.gift-price { font-size: 22px; font-weight: 600; color: var(--pink-btn); margin-bottom: 20px; }
 
 .btn-gift {
     background-color: var(--pink-btn);
@@ -418,11 +391,9 @@ body {
     font-size: 12px;
     transition: background 0.3s ease;
 }
+.btn-gift:hover { background-color: var(--pink-btn-hover); }
 
-.btn-gift:hover {
-    background-color: var(--pink-btn-hover);
-}
-
+/* MODAL */
 .modal {
     display: none;
     position: fixed;
@@ -456,10 +427,7 @@ body {
     color: #aaa;
     cursor: pointer;
 }
-
-.close-modal:hover {
-    color: #333;
-}
+.close-modal:hover { color: #333; }
 
 .modal-content h3 {
     font-family: 'Sofia', cursive;
@@ -468,45 +436,13 @@ body {
     margin-bottom: 15px;
 }
 
-.qr-code-placeholder img {
-    max-width: 150px;
-    margin: 20px 0;
-    border-radius: 8px;
-}
+.qr-code-placeholder img { max-width: 150px; margin: 20px 0; border-radius: 8px; }
+.pix-copy-area { display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap; }
+.pix-copy-area input { flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-family: 'Montserrat', sans-serif; font-size: 14px; color: #333; min-width: 150px;}
+.btn-copy { background-color: #333; color: #fff; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; font-family: 'Montserrat', sans-serif; font-size: 12px; transition: background 0.3s ease; }
+.btn-copy:hover { background-color: #555; }
 
-.pix-copy-area {
-    display: flex;
-    gap: 10px;
-    margin-top: 10px;
-}
-
-.pix-copy-area input {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 14px;
-    color: #333; /* Corrigido de #555 para #333 */
-}
-
-.btn-copy {
-    background-color: #333;
-    color: #fff;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 12px;
-    transition: background 0.3s ease;
-}
-
-.btn-copy:hover {
-    background-color: #555;
-}
-
-/* ================= RSVP E DETALHES ================= */
+/* ================= RSVP ================= */
 .rsvp-section {
     background-color: #fff;
     padding: 80px 20px;
@@ -532,71 +468,22 @@ body {
 
 .event-info h3, .rsvp-form-container h3 {
     font-size: 24px;
-    color: var(--pink-btn); /* Removido o #333 duplicado */
+    color: var(--pink-btn);
     margin-bottom: 20px;
     font-family: 'Sofia', cursive;
 }
 
-.event-address {
-    font-size: 15px;
-    line-height: 1.6;
-    color: #333; /* Corrigido de #555 para #333 */
-    margin-bottom: 30px;
-}
+.event-address { font-size: 15px; line-height: 1.6; color: #333; margin-bottom: 30px; }
+.event-schedule { margin-bottom: 30px; }
+.schedule-item { display: flex; align-items: center; padding: 12px 0; border-bottom: 1px solid #e0dbce; }
+.schedule-item:last-child { border-bottom: none; }
+.time { font-weight: 700; color: var(--pink-btn); font-size: 18px; margin-right: 20px; min-width: 60px; }
+.event-desc { color: #333; font-weight: 500; }
 
-.event-schedule {
-    margin-bottom: 30px;
-}
-
-.schedule-item {
-    display: flex;
-    align-items: center;
-    padding: 12px 0;
-    border-bottom: 1px solid #e0dbce;
-}
-
-.schedule-item:last-child {
-    border-bottom: none;
-}
-
-.time {
-    font-weight: 700;
-    color: var(--pink-btn);
-    font-size: 18px;
-    margin-right: 20px;
-    min-width: 60px;
-}
-
-.event-desc {
-    color: #333; /* Corrigido de #444 para #333 */
-    font-weight: 500;
-}
-
-.rsvp-form-container {
-    flex: 1;
-    padding: 20px 0;
-}
-
-.form-intro {
-    font-size: 14px;
-    color: #333; /* Corrigido de #666 para #333 */
-    margin-bottom: 30px;
-    line-height: 1.5;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    font-size: 13px;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 8px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
+.rsvp-form-container { flex: 1; padding: 20px 0; }
+.form-intro { font-size: 14px; color: #333; margin-bottom: 30px; line-height: 1.5; }
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; font-size: 13px; font-weight: 600; color: #333; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
 
 .form-group input, 
 .form-group select {
@@ -608,14 +495,9 @@ body {
     font-size: 14px;
     background-color: #fcfcfc;
     transition: border-color 0.3s ease;
-    color: #333; /* Adicionado para garantir o texto escuro dentro do input */
+    color: #333;
 }
-
-.form-group input:focus, 
-.form-group select:focus {
-    outline: none;
-    border-color: var(--pink-btn);
-}
+.form-group input:focus, .form-group select:focus { outline: none; border-color: var(--pink-btn); }
 
 .btn-submit {
     width: 100%;
@@ -632,198 +514,138 @@ body {
     transition: background 0.3s ease;
     margin-top: 10px;
 }
+.btn-submit:hover { background-color: var(--pink-btn-hover); }
 
-.btn-submit:hover {
-    background-color: var(--pink-btn-hover);
-}
+.loading-msg { margin-top: 15px; font-size: 14px; color: #333; text-align: center; font-style: italic; }
+.success-msg { background-color: #e8f5e9; border-left: 5px solid #4caf50; padding: 20px; border-radius: 5px; margin-top: 20px; }
+.success-msg h4 { color: #2e7d32; margin-bottom: 10px; }
+.success-msg p { color: #333; font-size: 14px; }
 
-.loading-msg {
-    margin-top: 15px;
-    font-size: 14px;
-    color: #333; /* Corrigido de #666 para #333 */
-    text-align: center;
-    font-style: italic;
-}
+/* ================= BÍBLIA / VERSÍCULO ================= */
+.bible-section { background-color: #fff; padding: 220px 20px; text-align: center; }
+.bible-container { max-width: 800px; margin: 0 auto; }
+.quote-icon { font-family: 'Sofia', cursive; font-size: 60px; color: var(--pink-btn); opacity: 0.3; display: block; margin-bottom: -20px; }
+.verse-text { font-family: 'Sofia', cursive; font-size: clamp(24px, 4vw, 32px); color: #333; line-height: 1.4; margin-bottom: 20px; font-style: italic; }
+.verse-reference { font-family: 'Montserrat', sans-serif; font-size: 13px; text-transform: uppercase; letter-spacing: 3px; color: #888; display: block; }
 
-.success-msg {
-    background-color: #e8f5e9;
-    border-left: 5px solid #4caf50;
-    padding: 20px;
-    border-radius: 5px;
-    margin-top: 20px;
-}
+.divider-flower { width: 60px; height: 1px; background-color: var(--pink-btn); margin: 30px auto 0; position: relative; }
+.divider-flower::after { content: '❤'; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: #fff; padding: 0 10px; color: var(--pink-btn); font-size: 14px; }
 
-.success-msg h4 {
-    color: #2e7d32;
-    margin-bottom: 10px;
-}
+/* ================= FOOTER ================= */
+.footer { background-color: #fff; padding: 20px 0; text-align: center; border-top: 1px solid #eee; width: 100%; }
+.footer-message { font-family: 'Great Vibes', cursive; font-size: 22px; color: var(--pink-btn); margin-bottom: 2px; }
+.footer-divider { width: 30px; height: 1px; background-color: #eee; margin: 8px auto; }
+.footer-credits { font-size: 10px; color: #333; }
+.footer-credits a { color: #333; text-decoration: none; font-weight: 600; transition: color 0.3s ease; }
+.footer-credits a:hover { color: var(--pink-btn-hover); text-decoration: underline; }
 
-.success-msg p {
-    color: #333;
-    font-size: 14px;
-}
+/* ================= ANIMAÇÕES ================= */
+.reveal { position: relative; opacity: 0; transform: translateY(50px); transition: all 1.2s ease; }
+.reveal.active { opacity: 1; transform: translateY(0); }
+
+
+/* ========================================================
+   REGRAS DE RESPONSIVIDADE (MOBILE FIRST / MEDIA QUERIES)
+   ======================================================== */
 
 @media screen and (max-width: 768px) {
+    /* Navbar no Mobile: Empilha os itens para não vazar pro lado */
+    .navbar {
+        padding: 15px 20px;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .nav-links {
+        gap: 15px;
+        flex-wrap: wrap; /* Permite que os botões caiam de linha se a tela for minúscula */
+        justify-content: center;
+    }
+
+    /* Subtitulo do Hero (Linha e Data) */
+    .subtitle, .date {
+        font-size: 11px;
+        letter-spacing: 2px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    /* Ajuste no Hero e Countdown */
+    .hero-content {
+        gap: 10px; /* Reduz o espaço entre os elementos na tela principal */
+    }
+
+    .countdown-container { 
+        gap: 10px; 
+    }
+    .countdown-item { 
+        min-width: 60px; 
+        padding: 10px; 
+    }
+    .countdown-item span { 
+        font-size: 20px; 
+    }
+
+    /* Timeline Vertical Perfeita pro Celular */
+    .timeline::before,
+    .timeline-line {
+        left: 31px;
+        transform: none;
+    }
+    
+    .timeline-item { margin-bottom: 50px; }
+
+    .timeline-dot {
+        left: 21px;
+        transform: none;
+        top: 20px;
+    }
+
+    .timeline-wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-left: 70px; /* Dá espaço para a linha à esquerda */
+        padding-right: 20px;
+        gap: 20px;
+    }
+
+    .timeline-item.inverse .timeline-wrapper {
+        flex-direction: column; /* Impede a inversão de layout no celular */
+    }
+
+    .timeline-content,
+    .timeline-photo-card {
+        width: 100%;
+        margin: 0 !important; /* Zera as margens malucas da versão desktop */
+    }
+
+    /* Margens menores nas seções no celular */
+    .timeline-section,
+    .gifts-section,
+    .rsvp-section {
+        padding: 50px 15px;
+    }
+
+    .bible-section { 
+        padding: 100px 20px; 
+    }
+
+    /* RSVP Container (De lado a lado para empilhado) */
     .rsvp-container {
         flex-direction: column;
+        gap: 30px;
     }
     .event-info, .rsvp-form-container {
         width: 100%;
     }
 }
 
-.countdown-container {
-    display: flex;
-    gap: 20px;
-    margin: 20px 0;
-}
-
-.countdown-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.2); /* Transparência sobre a foto hero */
-    padding: 15px;
-    border-radius: 8px;
-    min-width: 80px;
-    backdrop-filter: blur(5px); /* Efeito de vidro fosco */
-    border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-.countdown-item span {
-    font-size: 30px;
-    font-weight: 600;
-    color: #fff;
-}
-
-.countdown-item small {
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: #fff;
-    margin-top: 5px;
-}
-
 @media (max-width: 480px) {
-    .countdown-container { gap: 10px; }
-    .countdown-item { min-width: 60px; padding: 10px; }
-    .countdown-item span { font-size: 20px; }
-}
-
-/* ================= ANIMAÇÕES DE REVELAÇÃO ================= */
-.reveal {
-    position: relative;
-    opacity: 0;
-    transform: translateY(50px);
-    transition: all 1.2s ease;
-}
-
-.reveal.active {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* ================= RODAPÉ (FOOTER) COMPACTO ================= */
-.footer {
-    background-color: #fff;
-    padding: 20px 0; /* Reduzido de 60px para 20px */
-    text-align: center;
-    border-top: 1px solid #eee;
-    width: 100%;
-}
-
-.footer-message {
-    font-family: 'Great Vibes', cursive;
-    font-size: 22px; /* Reduzi um pouco para ficar mais delicado */
-    color: var(--pink-btn);
-    margin-bottom: 2px; /* Espaço mínimo */
-}
-
-.footer-divider {
-    width: 30px; /* Mais curta */
-    height: 1px;
-    background-color: #eee; /* Cor mais clara para sumir quase */
-    margin: 8px auto; 
-}
-
-.footer-credits {
-    font-size: 10px;
-    color: #333;
-}
-
-.footer-credits a {
-    color: #333; 
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s ease;
-}
-
-.footer-credits a:hover {
-    color: var(--pink-btn-hover); 
-    text-decoration: underline;
-}
-
-/* ================= SEÇÃO VERSÍCULO ================= */
-.bible-section {
-    background-color: #fff;
-    padding: 220px 20px; /* Bastante espaço para dar importância */
-    text-align: center;
-}
-
-.bible-container {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.quote-icon {
-    font-family: 'Sofia', cursive;
-    font-size: 60px;
-    color: var(--pink-btn);
-    opacity: 0.3;
-    display: block;
-    margin-bottom: -20px;
-}
-
-.verse-text {
-    font-family: 'Sofia', cursive;
-    font-size: 32px;
-    color: #333;
-    line-height: 1.4;
-    margin-bottom: 20px;
-    font-style: italic;
-}
-
-.verse-reference {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    color: #888;
-    display: block;
-}
-
-.divider-flower {
-    width: 60px;
-    height: 1px;
-    background-color: var(--pink-btn);
-    margin: 30px auto 0;
-    position: relative;
-}
-
-/* Um detalhe charmoso: um pontinho no meio da linha */
-.divider-flower::after {
-    content: '❤';
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #fff;
-    padding: 0 10px;
-    color: var(--pink-btn);
-    font-size: 14px;
-}
-
-@media (max-width: 768px) {
-    .verse-text { font-size: 24px; }
-    .bible-section { padding: 60px 20px; }
+    /* Ajustes refinados para telas bem pequenas (iPhone SE, etc) */
+    .nav-links a {
+        font-size: 12px; /* Letra menor no menu */
+    }
+    .event-info {
+        padding: 25px 15px; /* Menos respiro nos cards */
+    }
 }
