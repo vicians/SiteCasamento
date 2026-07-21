@@ -66,11 +66,14 @@
             </div>
             </div>
             <a href="#rsvp" class="btn-hero">Confirmar Presença</a>
+            <div class="scroll-indicator">
+                <a href="#versiculo" style="text-decoration: none; color: white;">&#x2193;</a>
+            </div>
         </div>
     </section>
 
-    <section id="versiculo" class="bible-section reveal">
-            <div class="bible-container">
+    <section id="versiculo" class="bible-section">
+            <div class="bible-container reveal">
                 <i class="quote-icon">"</i>
                 <p class="verse-text">
                     Nós amamos porque Ele nos amou primeiro.
@@ -140,11 +143,21 @@
         <h2 class="section-title">Lista de Presentes</h2>
         <p class="gifts-intro">Sua presença é o nosso maior presente! Mas se desejar nos abençoar de outra forma, preparamos algumas opções divertidas para nos ajudar nessa nova fase.</p>
         
-        <div class="gifts-grid" id="lista-dinamica">
-          <p>Carregando presentes...</p>
+        <div style="text-align: center; margin-top: 30px;">
+            <button onclick="abrirModalListaPresentes()" class="btn-hero" style="cursor: pointer;">Ver Lista de Presentes</button>
         </div>
-        
     </section>
+
+    <!-- Modal da Lista de Presentes -->
+    <div id="giftsListModal" class="modal">
+        <div class="modal-content" style="max-height: 90vh; overflow-y: auto; width: 90%; max-width: 1000px;">
+            <span class="close-modal" onclick="fecharModalListaPresentes()">&times;</span>
+            <h3 style="margin-bottom: 20px;">Lista de Presentes</h3>
+            <div class="gifts-grid" id="lista-dinamica">
+                <p>Carregando presentes...</p>
+            </div>
+        </div>
+    </div>
 
     <div id="pixModal" class="modal">
         <div class="modal-content">

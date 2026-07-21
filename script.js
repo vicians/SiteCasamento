@@ -7,6 +7,7 @@ const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
 
 const modal = document.getElementById("pixModal");
+const giftsListModal = document.getElementById("giftsListModal");
 
 // ================= 2. LÓGICA DA LISTA DE PRESENTES =================
 async function carregarPresentes() {
@@ -54,8 +55,17 @@ function fecharModal() {
     if (modal) modal.style.display = "none";
 }
 
+function abrirModalListaPresentes() {
+    if (giftsListModal) giftsListModal.style.display = "flex";
+}
+
+function fecharModalListaPresentes() {
+    if (giftsListModal) giftsListModal.style.display = "none";
+}
+
 window.onclick = function(event) {
     if (event.target == modal) fecharModal();
+    if (event.target == giftsListModal) fecharModalListaPresentes();
 }
 
 function copiarPix() {
@@ -153,7 +163,8 @@ function revealOnScroll() {
             }
         });
     }, {
-        threshold: 0.1 // Ativa quando 10% do elemento estiver visível
+        threshold: 0.15, 
+        rootMargin: '0px 0px -100px 0px'
     });
 
     reveals.forEach(reveal => {

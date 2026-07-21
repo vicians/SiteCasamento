@@ -207,7 +207,7 @@ body {
 /* ================= TIMELINE / HISTÓRIA ================= */
 .timeline-section {
     background-color: #fff;
-    padding: 80px 20px;
+    padding: 120px 20px;
     text-align: center;
 }
 
@@ -342,7 +342,7 @@ body {
 /* ================= PRESENTES ================= */
 .gifts-section {
     background-color: #fff;
-    padding: 80px 20px;
+    padding: 120px 20px;
     text-align: center;
 }
 
@@ -351,6 +351,7 @@ body {
     margin: 0 auto 50px auto;
     color: #333;
     line-height: 1.6;
+    font-size: 18px;
 }
 
 .gifts-grid {
@@ -445,7 +446,7 @@ body {
 /* ================= RSVP ================= */
 .rsvp-section {
     background-color: #fff;
-    padding: 80px 20px;
+    padding: 120px 20px;
     text-align: center;
 }
 
@@ -522,10 +523,10 @@ body {
 .success-msg p { color: #333; font-size: 14px; }
 
 /* ================= BÍBLIA / VERSÍCULO ================= */
-.bible-section { background-color: #fff; padding: 220px 20px; text-align: center; }
+.bible-section { background-color: #fff; padding: 240px 20px; text-align: center; }
 .bible-container { max-width: 800px; margin: 0 auto; }
 .quote-icon { font-family: 'Sofia', cursive; font-size: 60px; color: var(--pink-btn); opacity: 0.3; display: block; margin-bottom: -20px; }
-.verse-text { font-family: 'Sofia', cursive; font-size: clamp(24px, 4vw, 32px); color: #333; line-height: 1.4; margin-bottom: 20px; font-style: italic; }
+.verse-text { font-family: 'Sofia', cursive; font-size: clamp(32px, 6vw, 48px); color: #333; line-height: 1.4; margin-bottom: 20px; font-style: italic; }
 .verse-reference { font-family: 'Montserrat', sans-serif; font-size: 13px; text-transform: uppercase; letter-spacing: 3px; color: #888; display: block; }
 
 .divider-flower { width: 60px; height: 1px; background-color: var(--pink-btn); margin: 30px auto 0; position: relative; }
@@ -648,4 +649,21 @@ body {
     .event-info {
         padding: 25px 15px; /* Menos respiro nos cards */
     }
+}
+
+/* ================= SCROLL INDICATOR ================= */
+.scroll-indicator {
+    margin-top: 50px;
+    animation: bounce 2s infinite;
+}
+.scroll-indicator a {
+    color: #fff;
+    font-size: 40px;
+    text-decoration: none;
+    opacity: 0.8;
+}
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-15px); }
+    60% { transform: translateY(-7px); }
 }
