@@ -29,16 +29,10 @@ async function carregarPresentes() {
         grid.innerHTML = ''; 
 
         presentes.forEach(presente => {
-            const valorFormatado = Number(presente.valor).toLocaleString('pt-BR', {
-                style: 'currency',
-                currency: 'BRL'
-            });
-
             const cardHTML = `
                 <div class="gift-card">
                     <div class="gift-icon">${presente.icone}</div>
                     <h3>${presente.titulo}</h3>
-                    <span class="gift-price">${valorFormatado}</span>
                     <button class="btn-gift" onclick="abrirModalPix('${presente.titulo}')">Presentear</button>
                 </div>
             `;
