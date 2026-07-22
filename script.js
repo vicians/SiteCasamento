@@ -107,7 +107,7 @@ function prosseguirReserva() {
     document.getElementById('selected-gifts-list').innerHTML = listaHtml;
 }
 
-function finalizarReserva() {
+async function finalizarReserva() {
     const nomeConvidado = document.getElementById('guest-name').value;
     const erroMsg = document.getElementById('guest-name-error');
     
@@ -130,6 +130,33 @@ function finalizarReserva() {
         method: "POST",
         body: formData
     }).catch(err => console.error("Erro ao enviar para o Google Sheets:", err));
+
+    // Descontar a quantidade no Supabase para cada presente selecionado
+    for (const presente of presentesSelecionados) {
+        try {
+            const { data: itemData, error: fetchError } = await supabaseClient
+                .from('presentes')
+                .select('quantidade')
+                .eq('id', presente.id)
+                .single();
+
+            if (!fetchError && itemData && typeof itemData.quantidade === 'number') {
+                const novaQuantidade = Math.max(0, itemData.quantidade - 1);
+                const { error: updateError } = await supabaseClient
+                    .from('presentes')
+                    .update({ quantidade: novaQuantidade })
+                    .eq('id', presente.id);
+                
+                if (updateError) {
+                    console.error("Erro no update do Supabase (RLS?):", updateError);
+                } else {
+                    console.log(`Presente ${presente.id} atualizado para quantidade ${novaQuantidade}`);
+                }
+            }
+        } catch (e) {
+            console.error("Erro ao descontar quantidade do presente:", presente.id, e);
+        }
+    }
     
     // Resetar estado local
     presentesSelecionados = [];
