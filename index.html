@@ -141,7 +141,7 @@
 
     <section id="presentes" class="gifts-section">
         <h2 class="section-title">Lista de Presentes</h2>
-        <p class="gifts-intro">Sua presença é o nosso maior presente! Mas se desejar nos abençoar de outra forma, preparamos algumas opções divertidas para nos ajudar nessa nova fase.</p>
+        <p class="gifts-intro">Sua presença é o nosso maior presente! Mas se desejar nos abençoar de outra forma, preparamos algumas opções para nos ajudar nessa nova fase.</p>
         
         <div style="text-align: center; margin-top: 30px;">
             <button onclick="abrirModalListaPresentes()" class="btn-hero" style="cursor: pointer;">Ver Lista de Presentes</button>
@@ -155,6 +155,11 @@
             <h3 style="margin-bottom: 20px;">Lista de Presentes</h3>
             <div class="gifts-grid" id="lista-dinamica">
                 <p>Carregando presentes...</p>
+            </div>
+            
+            <div id="reservation-action" style="display: none; text-align: center; margin-top: 30px; position: sticky; bottom: -10px; background: white; padding: 15px; box-shadow: 0 -5px 15px rgba(0,0,0,0.05); border-radius: 10px;">
+                <p style="margin-bottom: 10px; color: var(--pink-btn); font-weight: 600;" id="reservation-count">0 itens selecionados</p>
+                <button onclick="prosseguirReserva()" class="btn-hero" style="width: 100%; max-width: 300px; padding: 12px; cursor: pointer;">Prosseguir com a Reserva &#x2794;</button>
             </div>
         </div>
     </div>

@@ -29,12 +29,28 @@ async function carregarPresentes() {
 
         grid.innerHTML = ''; 
 
-        presentes.forEach(presente => {
+        presentes.forEach((presente, index) => {
+            let onclickAction;
+            let btnClassAndId;
+            let btnText;
+
+            if (index === 0) {
+                // O primeiro presente é sempre Pix
+                onclickAction = `onclick="abrirModalPix('${presente.titulo}')"`;
+                btnClassAndId = `class="btn-gift"`;
+                btnText = `Presentear`;
+            } else {
+                // Os demais presentes serão físicos
+                onclickAction = `onclick="toggleSelecaoPresente('${presente.id}', '${presente.titulo}')"`;
+                btnClassAndId = `class="btn-gift" id="btn-presente-${presente.id}"`;
+                btnText = `Selecionar`;
+            }
+
             const cardHTML = `
                 <div class="gift-card">
-                    <div class="gift-icon">${presente.icone}</div>
+                    <div class="gift-icon" style="cursor: pointer;" ${onclickAction}>${presente.icone}</div>
                     <h3>${presente.titulo}</h3>
-                    <button class="btn-gift" onclick="abrirModalPix('${presente.titulo}')">Presentear</button>
+                    <button ${btnClassAndId} ${onclickAction}>${btnText}</button>
                 </div>
             `;
             grid.insertAdjacentHTML('beforeend', cardHTML);
@@ -43,6 +59,48 @@ async function carregarPresentes() {
         console.error("Erro no Supabase:", err);
         grid.innerHTML = '<p>Erro ao carregar presentes. Verifique o console.</p>';
     }
+}
+
+
+
+let presentesSelecionados = [];
+
+function toggleSelecaoPresente(idPresente, nomePresente) {
+    const index = presentesSelecionados.findIndex(p => p.id === idPresente);
+    const btn = document.getElementById(`btn-presente-${idPresente}`);
+    
+    if (index > -1) {
+        // Desmarcar
+        presentesSelecionados.splice(index, 1);
+        btn.innerText = "Selecionar";
+        btn.style.backgroundColor = "var(--pink-btn)"; 
+    } else {
+        // Marcar
+        presentesSelecionados.push({ id: idPresente, nome: nomePresente });
+        btn.innerText = "Selecionado ✔";
+        btn.style.backgroundColor = "var(--pink-btn-hover)";
+    }
+    
+    atualizarBarraReserva();
+}
+
+function atualizarBarraReserva() {
+    const barra = document.getElementById('reservation-action');
+    const textoCount = document.getElementById('reservation-count');
+    
+    if (!barra || !textoCount) return;
+    
+    if (presentesSelecionados.length > 0) {
+        barra.style.display = "block";
+        textoCount.innerText = `${presentesSelecionados.length} item(s) selecionado(s)`;
+    } else {
+        barra.style.display = "none";
+    }
+}
+
+function prosseguirReserva() {
+    const nomes = presentesSelecionados.map(p => p.nome).join("\\n- ");
+    alert("Próximo passo: confirmar a reserva e enviar para o banco de dados!\\n\\nItens Selecionados:\\n- " + nomes);
 }
 
 // ================= 3. LÓGICA DO MODAL E PIX =================
