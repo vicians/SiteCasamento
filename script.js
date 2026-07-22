@@ -125,11 +125,10 @@ function finalizarReserva() {
     formData.append("pessoa", nomeConvidado);
     formData.append("presente", presentesStr);
     
-    // Enviar em background (no-cors para evitar erro de redirecionamento do Google)
+    // Enviar em background
     fetch(scriptUrl, {
         method: "POST",
-        body: formData,
-        mode: "no-cors"
+        body: formData
     }).catch(err => console.error("Erro ao enviar para o Google Sheets:", err));
     
     // Resetar estado local
