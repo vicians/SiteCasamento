@@ -18,6 +18,7 @@ async function carregarPresentes() {
         const { data: presentes, error } = await supabaseClient
             .from('presentes')
             .select('*')
+            .gte('quantidade', 1)
             .order('id', { ascending: true });
 
         if (error) throw error;
@@ -116,7 +117,22 @@ function finalizarReserva() {
     }
     erroMsg.style.display = 'none';
     
-    // Resetar estado
+    // Preparar dados para o Google Sheets
+    const scriptUrl = "https://script.google.com/macros/s/AKfycbxyA60rlVwChKbTQvQ-YhmGgpoznDOOvPrY3zsnOEQfqXsOMr3KddOUofixlDmZHlNGPg/exec";
+    const presentesStr = presentesSelecionados.map(p => p.nome).join(", ");
+    
+    const formData = new URLSearchParams();
+    formData.append("pessoa", nomeConvidado);
+    formData.append("presente", presentesStr);
+    
+    // Enviar em background (no-cors para evitar erro de redirecionamento do Google)
+    fetch(scriptUrl, {
+        method: "POST",
+        body: formData,
+        mode: "no-cors"
+    }).catch(err => console.error("Erro ao enviar para o Google Sheets:", err));
+    
+    // Resetar estado local
     presentesSelecionados = [];
     atualizarBarraReserva();
     carregarPresentes(); // re-render para tirar as seleções
