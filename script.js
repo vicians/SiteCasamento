@@ -99,8 +99,35 @@ function atualizarBarraReserva() {
 }
 
 function prosseguirReserva() {
-    const nomes = presentesSelecionados.map(p => p.nome).join("\\n- ");
-    alert("Próximo passo: confirmar a reserva e enviar para o banco de dados!\\n\\nItens Selecionados:\\n- " + nomes);
+    document.getElementById('gifts-list-view').style.display = 'none';
+    document.getElementById('thank-you-view').style.display = 'block';
+    
+    const listaHtml = presentesSelecionados.map(p => `<li style="margin-bottom: 5px; border-bottom: 1px solid #eaeaea; padding-bottom: 5px; font-weight: 500;">&#10003; ${p.nome}</li>`).join("");
+    document.getElementById('selected-gifts-list').innerHTML = listaHtml;
+}
+
+function finalizarReserva() {
+    const nomeConvidado = document.getElementById('guest-name').value;
+    const erroMsg = document.getElementById('guest-name-error');
+    
+    if (!nomeConvidado.trim()) {
+        erroMsg.style.display = 'block';
+        return;
+    }
+    erroMsg.style.display = 'none';
+    
+    // Resetar estado
+    presentesSelecionados = [];
+    atualizarBarraReserva();
+    carregarPresentes(); // re-render para tirar as seleções
+    document.getElementById('guest-name').value = '';
+    
+    // Trocar para a view de sucesso
+    document.getElementById('thank-you-view').style.display = 'none';
+    document.getElementById('success-view').style.display = 'block';
+    
+    // Atualizar mensagem
+    document.getElementById('success-message').innerText = "Obrigado, " + nomeConvidado + "! Sua intenção de presente foi registrada com sucesso.";
 }
 
 // ================= 3. LÓGICA DO MODAL E PIX =================
@@ -115,6 +142,14 @@ function fecharModal() {
 
 function abrirModalListaPresentes() {
     if (giftsListModal) giftsListModal.style.display = "flex";
+    const listView = document.getElementById('gifts-list-view');
+    const thankYouView = document.getElementById('thank-you-view');
+    const successView = document.getElementById('success-view');
+    const erroMsg = document.getElementById('guest-name-error');
+    if (listView) listView.style.display = 'block';
+    if (thankYouView) thankYouView.style.display = 'none';
+    if (successView) successView.style.display = 'none';
+    if (erroMsg) erroMsg.style.display = 'none';
 }
 
 function fecharModalListaPresentes() {
