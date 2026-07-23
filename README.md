@@ -37,14 +37,3 @@ O projeto utiliza uma stack moderna de "Backend-as-a-Service" para garantir agil
 ## 🎨 Identidade Visual
 
 O projeto segue uma paleta de cores **Blush & Minimalist**, focada em legibilidade e sofisticação:
-
----
-
-## 📱 Mobile Roadmap (Em Breve)
-
-Atualmente em desenvolvimento no **Android Studio**, uma versão nativa em **Kotlin + Jetpack Compose** para:
-- Notificações Push em tempo real para novos RSVPs.
-- Dashboard de gestão para os noivos.
-- Integração com API de mapas para localização da cerimônia.
-
----
