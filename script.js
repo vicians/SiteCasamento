@@ -333,3 +333,83 @@ window.addEventListener('scroll', () => {
     
     ultimoScroll = atualScroll;
 });
+
+// ================= 8. CONTROLE DE MÚSICA DE FUNDO =================
+const bgMusic = document.getElementById('bg-music');
+const musicBtn = document.getElementById('music-toggle-btn');
+const musicIcon = document.getElementById('music-icon');
+
+let userPaused = false;
+
+function updateMusicUI() {
+    if (!musicBtn || !musicIcon || !bgMusic) return;
+
+    if (!bgMusic.paused) {
+        // MÚSICA TOCANDO -> Botão VERMELHO, ícone de nota musical, opção de pausar
+        musicBtn.classList.add('playing');
+        musicBtn.classList.remove('paused');
+        musicIcon.textContent = '🎵';
+        musicBtn.setAttribute('title', 'Pausar música');
+        musicBtn.setAttribute('aria-label', 'Pausar música de fundo');
+    } else {
+        // MÚSICA PAUSADA -> Botão CINZA, ícone de mudo, opção de ligar
+        musicBtn.classList.remove('playing');
+        musicBtn.classList.add('paused');
+        musicIcon.textContent = '🔇';
+        musicBtn.setAttribute('title', 'Tocar música');
+        musicBtn.setAttribute('aria-label', 'Tocar música de fundo');
+    }
+}
+
+function tryPlayMusic() {
+    if (bgMusic && !userPaused && bgMusic.paused) {
+        bgMusic.play()
+            .then(() => {
+                updateMusicUI();
+            })
+            .catch(err => {
+                console.log("Autoplay aguardando gesto do usuário...", err);
+                updateMusicUI();
+            });
+    }
+}
+
+if (bgMusic && musicBtn) {
+    // Sincroniza a interface sempre que o estado do áudio mudar de verdade
+    bgMusic.addEventListener('play', updateMusicUI);
+    bgMusic.addEventListener('pause', updateMusicUI);
+
+    // Tenta tocar imediatamente ao carregar
+    tryPlayMusic();
+
+    // Ativa no menor gesto do usuário no celular ou PC (toque, arraste/scroll, movimento, clique)
+    const enableAudioOnGesture = () => {
+        if (!userPaused && bgMusic.paused) {
+            tryPlayMusic();
+        }
+    };
+
+    const userGestureEvents = [
+        'touchstart', 'touchmove', 'touchend', 'touchcancel',
+        'pointerdown', 'pointermove', 'pointerup',
+        'mousedown', 'click', 'scroll', 'wheel', 'keydown', 'mousemove'
+    ];
+
+    userGestureEvents.forEach(evt => {
+        window.addEventListener(evt, enableAudioOnGesture, { passive: true });
+        document.addEventListener(evt, enableAudioOnGesture, { passive: true });
+    });
+
+    // Alternar reprodução ao clicar no botão
+    musicBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (bgMusic.paused) {
+            userPaused = false;
+            bgMusic.play().then(updateMusicUI).catch(console.error);
+        } else {
+            userPaused = true;
+            bgMusic.pause();
+            updateMusicUI();
+        }
+    });
+}
