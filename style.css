@@ -490,6 +490,101 @@ body {
     margin-bottom: 15px;
 }
 
+.gifts-list-content {
+    max-height: 90vh;
+    max-height: 90dvh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    width: 90%;
+    max-width: 1000px;
+}
+
+#finalizar-reserva-btn { cursor: pointer; }
+#finalizar-reserva-btn:disabled {
+    opacity: 0.6;
+    background-color: var(--pink-btn);
+    cursor: wait;
+    transform: none;
+}
+
+.reservation-action {
+    text-align: center;
+    margin-top: 30px;
+    position: sticky;
+    bottom: -10px;
+    background: white;
+    padding: 15px;
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.05);
+    border-radius: 10px;
+}
+
+#reservation-count { margin-bottom: 10px; color: var(--pink-btn); font-weight: 600; }
+.reservation-action .btn-hero { width: 100%; max-width: 300px; padding: 12px; cursor: pointer; }
+
+@media screen and (max-width: 600px) {
+    .gifts-list-content {
+        width: 94%;
+        padding: 48px 14px 16px;
+    }
+
+    #giftsListModal .gifts-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    #giftsListModal .gifts-grid > p { grid-column: 1 / -1; }
+
+    #giftsListModal .gift-card {
+        min-width: 0;
+        padding: 14px 8px 10px;
+        border: 1px solid #eee8e5;
+        box-shadow: none;
+        transform: none;
+    }
+
+    #giftsListModal .gift-icon {
+        font-size: 30px;
+        line-height: 1.2;
+        margin-bottom: 8px;
+    }
+
+    #giftsListModal .gift-card h3 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 1.4;
+        overflow-wrap: anywhere;
+        margin-bottom: 12px;
+    }
+
+    #giftsListModal .btn-gift {
+        width: 100%;
+        min-height: 44px;
+        padding: 10px 4px;
+        margin-top: auto;
+        font-size: 10px;
+    }
+
+    #giftsListModal .gift-card-pix {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        gap: 10px;
+        padding: 12px;
+        background-color: #faf7f5;
+    }
+
+    #giftsListModal .gift-card-pix .gift-icon,
+    #giftsListModal .gift-card-pix h3 { margin: 0; }
+    #giftsListModal .gift-card-pix h3 { text-align: left; }
+    #giftsListModal .gift-card-pix .btn-gift { width: auto; padding-inline: 14px; }
+
+    .reservation-action { margin-top: 12px; padding: 10px 0 0; bottom: -16px; border-radius: 0; }
+    #reservation-count { font-size: 12px; margin-bottom: 8px; }
+    .reservation-action .btn-hero { margin-top: 0; min-height: 44px; font-size: 11px; letter-spacing: 1px; }
+}
+
 .qr-code-placeholder img { max-width: 150px; margin: 20px 0; border-radius: 8px; }
 .pix-copy-area { display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap; }
 .pix-copy-area input { flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-family: 'Montserrat', sans-serif; font-size: 14px; color: #333; min-width: 150px;}

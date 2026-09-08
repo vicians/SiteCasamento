@@ -205,7 +205,7 @@
 
     <!-- Modal da Lista de Presentes -->
     <div id="giftsListModal" class="modal">
-        <div class="modal-content" style="max-height: 90vh; overflow-y: auto; width: 90%; max-width: 1000px;">
+        <div class="modal-content gifts-list-content">
             <span class="close-modal" onclick="fecharModalListaPresentes()">&times;</span>
             
             <div id="gifts-list-view">
@@ -214,9 +214,9 @@
                     <p>Carregando presentes...</p>
                 </div>
                 
-                <div id="reservation-action" style="display: none; text-align: center; margin-top: 30px; position: sticky; bottom: -10px; background: white; padding: 15px; box-shadow: 0 -5px 15px rgba(0,0,0,0.05); border-radius: 10px;">
-                    <p style="margin-bottom: 10px; color: var(--pink-btn); font-weight: 600;" id="reservation-count">0 itens selecionados</p>
-                    <button onclick="prosseguirReserva()" class="btn-hero" style="width: 100%; max-width: 300px; padding: 12px; cursor: pointer;">Prosseguir com a Reserva &#x2794;</button>
+                <div id="reservation-action" class="reservation-action" style="display: none;">
+                    <p id="reservation-count">0 itens selecionados</p>
+                    <button onclick="prosseguirReserva()" class="btn-hero">Continuar reserva &#x2794;</button>
                 </div>
             </div>
 
@@ -227,7 +227,7 @@
                 <p style="margin-bottom: 15px;">Por favor, deixe seu nome abaixo para sabermos quem nos deu esse presente especial:</p>
                 <input type="text" id="guest-name" placeholder="Seu nome completo" style="width: 100%; padding: 12px; margin-bottom: 5px; border: 1px solid #ccc; border-radius: 5px; font-family: 'Montserrat', sans-serif;">
                 <p id="guest-name-error" style="color: #e74c3c; font-size: 13px; text-align: left; margin-bottom: 15px; display: none;">Por favor, digite seu nome.</p>
-                <button onclick="finalizarReserva()" class="btn-hero" style="width: 100%; max-width: 300px; padding: 12px; cursor: pointer;">Finalizar e Voltar para o Site</button>
+                <button id="finalizar-reserva-btn" onclick="finalizarReserva()" class="btn-hero" style="width: 100%; max-width: 300px; padding: 12px;">Finalizar e Voltar para o Site</button>
             </div>
 
             <div id="success-view" style="display: none; text-align: center; padding: 30px 20px;">

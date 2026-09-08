@@ -48,7 +48,7 @@ async function carregarPresentes() {
             }
 
             const cardHTML = `
-                <div class="gift-card">
+                <div class="gift-card${index === 0 ? ' gift-card-pix' : ''}">
                     <div class="gift-icon" style="cursor: pointer;" ${onclickAction}>${presente.icone}</div>
                     <h3>${presente.titulo}</h3>
                     <button ${btnClassAndId} ${onclickAction}>${btnText}</button>
@@ -65,6 +65,7 @@ async function carregarPresentes() {
 
 
 let presentesSelecionados = [];
+let reservaEmAndamento = false;
 
 function toggleSelecaoPresente(idPresente, nomePresente) {
     const index = presentesSelecionados.findIndex(p => p.id === idPresente);
@@ -108,68 +109,87 @@ function prosseguirReserva() {
 }
 
 async function finalizarReserva() {
+    if (reservaEmAndamento || presentesSelecionados.length === 0) return;
+
     const nomeConvidado = document.getElementById('guest-name').value;
     const erroMsg = document.getElementById('guest-name-error');
+    const botao = document.getElementById('finalizar-reserva-btn');
     
     if (!nomeConvidado.trim()) {
         erroMsg.style.display = 'block';
         return;
     }
     erroMsg.style.display = 'none';
-    
-    // Preparar dados para o Google Sheets
-    const scriptUrl = "https://script.google.com/macros/s/AKfycbxyA60rlVwChKbTQvQ-YhmGgpoznDOOvPrY3zsnOEQfqXsOMr3KddOUofixlDmZHlNGPg/exec";
-    const presentesStr = presentesSelecionados.map(p => p.nome).join(", ");
-    
-    const formData = new URLSearchParams();
-    formData.append("pessoa", nomeConvidado);
-    formData.append("presente", presentesStr);
-    
-    // Enviar em background
-    fetch(scriptUrl, {
-        method: "POST",
-        body: formData
-    }).catch(err => console.error("Erro ao enviar para o Google Sheets:", err));
 
-    // Descontar a quantidade no Supabase para cada presente selecionado
-    for (const presente of presentesSelecionados) {
-        try {
-            const { data: itemData, error: fetchError } = await supabaseClient
-                .from('presentes')
-                .select('quantidade')
-                .eq('id', presente.id)
-                .single();
+    reservaEmAndamento = true;
+    botao.disabled = true;
+    botao.setAttribute('aria-busy', 'true');
+    const textoOriginal = botao.innerText;
+    botao.innerText = 'Registrando...';
 
-            if (!fetchError && itemData && typeof itemData.quantidade === 'number') {
-                const novaQuantidade = Math.max(0, itemData.quantidade - 1);
-                const { error: updateError } = await supabaseClient
+    try {
+    
+        // Preparar dados para o Google Sheets
+        const scriptUrl = "https://script.google.com/macros/s/AKfycbxyA60rlVwChKbTQvQ-YhmGgpoznDOOvPrY3zsnOEQfqXsOMr3KddOUofixlDmZHlNGPg/exec";
+        const presentesStr = presentesSelecionados.map(p => p.nome).join(", ");
+    
+        const formData = new URLSearchParams();
+        formData.append("pessoa", nomeConvidado);
+        formData.append("presente", presentesStr);
+    
+        // Enviar em background
+        const envioPlanilha = fetch(scriptUrl, {
+            method: "POST",
+            body: formData
+        }).catch(err => console.error("Erro ao enviar para o Google Sheets:", err));
+
+        // Descontar a quantidade no Supabase para cada presente selecionado
+        for (const presente of presentesSelecionados) {
+            try {
+                const { data: itemData, error: fetchError } = await supabaseClient
                     .from('presentes')
-                    .update({ quantidade: novaQuantidade })
-                    .eq('id', presente.id);
+                    .select('quantidade')
+                    .eq('id', presente.id)
+                    .single();
+
+                if (!fetchError && itemData && typeof itemData.quantidade === 'number') {
+                    const novaQuantidade = Math.max(0, itemData.quantidade - 1);
+                    const { error: updateError } = await supabaseClient
+                        .from('presentes')
+                        .update({ quantidade: novaQuantidade })
+                        .eq('id', presente.id);
                 
-                if (updateError) {
-                    console.error("Erro no update do Supabase (RLS?):", updateError);
-                } else {
-                    console.log(`Presente ${presente.id} atualizado para quantidade ${novaQuantidade}`);
+                    if (updateError) {
+                        console.error("Erro no update do Supabase (RLS?):", updateError);
+                    } else {
+                        console.log(`Presente ${presente.id} atualizado para quantidade ${novaQuantidade}`);
+                    }
                 }
+            } catch (e) {
+                console.error("Erro ao descontar quantidade do presente:", presente.id, e);
             }
-        } catch (e) {
-            console.error("Erro ao descontar quantidade do presente:", presente.id, e);
         }
+
+        await envioPlanilha;
+    
+        // Resetar estado local
+        presentesSelecionados = [];
+        atualizarBarraReserva();
+        carregarPresentes(); // re-render para tirar as seleções
+        document.getElementById('guest-name').value = '';
+    
+        // Trocar para a view de sucesso
+        document.getElementById('thank-you-view').style.display = 'none';
+        document.getElementById('success-view').style.display = 'block';
+    
+        // Atualizar mensagem
+        document.getElementById('success-message').innerText = "Obrigado, " + nomeConvidado + "! Sua intenção de presente foi registrada com sucesso.";
+    } finally {
+        reservaEmAndamento = false;
+        botao.disabled = false;
+        botao.removeAttribute('aria-busy');
+        botao.innerText = textoOriginal;
     }
-    
-    // Resetar estado local
-    presentesSelecionados = [];
-    atualizarBarraReserva();
-    carregarPresentes(); // re-render para tirar as seleções
-    document.getElementById('guest-name').value = '';
-    
-    // Trocar para a view de sucesso
-    document.getElementById('thank-you-view').style.display = 'none';
-    document.getElementById('success-view').style.display = 'block';
-    
-    // Atualizar mensagem
-    document.getElementById('success-message').innerText = "Obrigado, " + nomeConvidado + "! Sua intenção de presente foi registrada com sucesso.";
 }
 
 // ================= 3. LÓGICA DO MODAL E PIX =================
@@ -195,6 +215,7 @@ function abrirModalListaPresentes() {
 }
 
 function fecharModalListaPresentes() {
+    if (reservaEmAndamento) return;
     if (giftsListModal) giftsListModal.style.display = "none";
 }
 
