@@ -140,6 +140,12 @@ body {
     text-align: center;
 }
 
+.date-weekday {
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
 .line {
     display: inline-block;
     width: 50px;
@@ -620,6 +626,34 @@ body {
     color: var(--pink-btn);
     margin-bottom: 15px;
     font-family: 'Sofia', cursive;
+}
+
+.event-date {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin: 20px 0;
+    padding: 18px;
+    background-color: #faf5f3;
+    border-left: 3px solid var(--pink-btn);
+    border-radius: 6px;
+    color: #333;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.event-date-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.event-date time {
+    color: var(--pink-btn);
+    font-size: clamp(24px, 5vw, 30px);
+    font-weight: 600;
+    line-height: 1.2;
 }
 
 .event-address { font-size: 15px; line-height: 1.6; color: #333; margin-bottom: 20px; }
