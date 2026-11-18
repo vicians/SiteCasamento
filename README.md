@@ -28,7 +28,7 @@ O projeto utiliza uma stack moderna de "Backend-as-a-Service" para garantir agil
 
 - [x] **Contagem Regressiva:** Timer em tempo real para o dia 20 de novembro de 2026.
 - [x] **Lista de Presentes Dinâmica:** Integração com banco de dados para exibição de itens e valores.
-- [x] **Sistema de RSVP:** Confirmação de presença enviando dados diretamente para o Supabase.
+- [x] **Detalhes do Evento:** Data, horário, local e mapa da celebração (sem confirmação de presença).
 - [x] **Design Responsivo:** Adaptado para mobile, priorizando o uso por convidados via WhatsApp.
 - [x] **Efeitos de UI:** Navegação inteligente (Smart Navbar) e revelação de conteúdo ao scroll.
 

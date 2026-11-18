@@ -237,44 +237,10 @@ function copiarPix() {
     });
 }
 
-// ================= 4. LÓGICA DO RSVP (GOOGLE SHEETS) =================
-const formRSVP = document.getElementById("formRSVP");
-
-if(formRSVP) {
-    formRSVP.addEventListener("submit", function(e) {
-        e.preventDefault();
-        const nome = document.getElementById("nome").value;
-        const quantidade = document.getElementById("quantidade").value;
-        const botao = document.querySelector("#formRSVP .btn-submit");
-        const spinner = document.getElementById("spinner");
-
-        botao.disabled = true;
-        botao.style.opacity = 0.6;
-        spinner.style.display = "block";
-
-        fetch("https://script.google.com/macros/s/AKfycbyFngrVGxc4fVswFZRbzqVkmCmObHREDHkzdnkm_in982LM8bkJa9aUbJ4o4rDfvOfdbA/exec", {
-            method: "POST",
-            body: new URLSearchParams({nome, quantidade})
-        })
-        .then(() => {
-            spinner.style.display = "none";
-            formRSVP.style.display = "none";
-            document.getElementById("agradecimento").style.display = "block";
-        })
-        .catch(error => {
-            console.error("Erro RSVP:", error);
-            spinner.style.display = "none";
-            botao.disabled = false;
-            botao.style.opacity = 1;
-            alert("Erro ao enviar confirmação.");
-        });
-    });
-}
-
 // Inicializa a busca de presentes
 carregarPresentes();
 
-// ================= 5. CONTADOR REGRESSIVO =================
+// ================= 4. CONTADOR REGRESSIVO =================
 function iniciarContagemRegressiva() {
     // Defina a data do casamento aqui (Ano, Mês - 1, Dia, Hora, Min)
     // Janeiro é 0, Novembro é 10
@@ -305,7 +271,7 @@ function iniciarContagemRegressiva() {
 iniciarContagemRegressiva();
 
 
-// ================= 6. LÓGICA DE REVELAÇÃO AO SCROLL =================
+// ================= 5. LÓGICA DE REVELAÇÃO AO SCROLL =================
 function revealOnScroll() {
     const reveals = document.querySelectorAll(".reveal");
 
@@ -331,7 +297,7 @@ function revealOnScroll() {
 // Inicializa a lógica de revelação
 revealOnScroll();
 
-// ================= 7. LÓGICA DE ESCONDER NAVBAR =================
+// ================= 6. LÓGICA DE ESCONDER NAVBAR =================
 
 let ultimoScroll = 0;
 
@@ -355,7 +321,7 @@ window.addEventListener('scroll', () => {
     ultimoScroll = atualScroll;
 });
 
-// ================= 8. CONTROLE DE MÚSICA DE FUNDO =================
+// ================= 7. CONTROLE DE MÚSICA DE FUNDO =================
 const bgMusic = document.getElementById('bg-music');
 const musicBtn = document.getElementById('music-toggle-btn');
 const musicIcon = document.getElementById('music-icon');
